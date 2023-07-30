@@ -16,4 +16,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             "GROUP BY ctg " +
             "ORDER BY COUNT(cmp) DESC")
     List<Category> findCategoryWithMostComposition();
+    @Query("SELECT c FROM Category c where c.id not in (select distinct comp.category.id from Composition comp)")
+    List<Category> findCategoryNoAppearInComposition();
 }

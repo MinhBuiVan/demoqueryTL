@@ -19,5 +19,9 @@ public interface CompositionRepository extends JpaRepository<Composition, Long> 
             "FROM Composition c " +
             "INNER JOIN Category ctg ON c.category.id = ctg.id " +
             "INNER JOIN Author a ON c.author.id = a.id")
-    List<Composition> findCompositionInfo();
+    List<Object[]> findCompositionInfo();
+    @Query("SELECT s FROM Composition s WHERE s.name LIKE %:keyword1% OR s.name LIKE %:keyword2% OR s.name LIKE %:keyword3% OR s.name LIKE %:keyword4%")
+    List<Composition> findCompositionByKeywordName(@Param("keyword1") String keyword1, @Param("keyword2") String keyword2, @Param("keyword3") String keyword3, @Param("keyword4") String keyword4);
+    @Query("SELECT DISTINCT s FROM Composition s WHERE s.title LIKE %:keyword1% OR s.title LIKE %:keyword2% OR s.title LIKE %:keyword3% OR s.title LIKE %:keyword4% OR s.name LIKE %:keyword1% OR s.name LIKE %:keyword2% OR s.name LIKE %:keyword3% OR s.name LIKE %:keyword4%")
+    List<Composition> findCompositionByTitleOrName(@Param("keyword1") String keyword1, @Param("keyword2") String keyword2, @Param("keyword3") String keyword3, @Param("keyword4") String keyword4);
 }

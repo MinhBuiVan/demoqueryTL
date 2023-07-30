@@ -14,4 +14,8 @@ public class CategoryService {
     public List<Category> getCategoryWithMostComposition() {
         return categoryRepository.findCategoryWithMostComposition();
     }
+
+    public List<Category> findCategoryNoAppearInComposition() {
+        return categoryRepository.findCategoryNoAppearInComposition();
+    }
 }

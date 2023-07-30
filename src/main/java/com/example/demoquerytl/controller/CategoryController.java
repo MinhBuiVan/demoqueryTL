@@ -15,8 +15,14 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    //e
     @GetMapping("/category/mostcomp")
     public List<Category> getCategoryWithMostCompositions() {
         return categoryService.getCategoryWithMostComposition();
+    }
+    //c
+    @GetMapping("/category/noappear")
+    public List<Category> getCategoryNoAppearInComposition() {
+        return categoryService.findCategoryNoAppearInComposition();
     }
 }
